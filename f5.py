@@ -9,18 +9,18 @@ CHROMEDRIVER = "/usr/bin/chromedriver"
  
 
 if __name__ == '__main__':
-    start = time.time()
+    # start = time.time()
     url = "https://hole-golf.web.app/"
     options = Options()
     options.add_argument('--headless')
  
     driver = webdriver.Chrome(CHROMEDRIVER, options=options)
     pbar = tqdm(bar_format = "{n_fmt} [{elapsed}]")
-    sec_5h45m = (60 * 5 + 45) * 60
+    # sec_5h45m = (60 * 5 + 45) * 60
     try:
-        while time.time() - start < sec_5h45m:
+        # while time.time() - start < sec_5h45m:
+        while True:
             driver.get(url)
-            
             title = driver.find_element(By.TAG_NAME, "h1")
             driver.refresh()
             pbar.update(1)
