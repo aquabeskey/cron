@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "cron"
+version = "v0.0.1"
+description = "cron"
+authors = ["JoneDoe"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+selenium = "^3.141.0"
+tqdm = "^4.63.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

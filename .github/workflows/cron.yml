@@ -1,0 +1,44 @@
+name: cron
+
+# Controls when the workflow will run
+on:
+  schedule:
+    - cron:  '0 */6 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8"]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2.2.2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - names: Set up scraiper
+        run: |
+          sudo apt install python3-selenium
+          wget https://dl.google.com/linux/linux_signing_key.pub
+          sudo apt-key add linux_signing_key.pub
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt -f install -y
+          sudo apt-get install google-chrome-stable
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install poetry
+          poetry install
+      - name: Run
+        run: |
+          poetry run f5.py
