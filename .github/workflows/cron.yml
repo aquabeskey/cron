@@ -41,4 +41,4 @@ jobs:
           poetry install
       - name: Run
         run: |
-          poetry run f5.py
+          poetry run python f5.py
