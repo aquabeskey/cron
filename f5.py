@@ -9,7 +9,7 @@ CHROMEDRIVER = "/usr/bin/chromedriver"
  
 
 if __name__ == '__main__':
-    # start = time.time()
+    start = time.time()
     # url = "https://hole-golf.web.app/"
     url = "https://hole-golf.web.app/WayToParticipate"
     options = Options()
